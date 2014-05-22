@@ -1,0 +1,37 @@
+#! /bin/bash
+
+set -e
+
+VERBOSE=0
+
+while test $# -gt 0
+do
+  case "$1" in
+     -v) VERBOSE=1
+      ;;
+    --*) echo "invalid option $1"
+      exit 1
+      ;;
+      *) echo "invalid arg $1"
+      ;;
+  esac
+  shift
+done
+
+if [ $VERBOSE -eq 1 ]; then
+  ruby -e "p \`git remote -v\`"
+  ruby -e "p \`git remote -v\`.match(/git@github.com:/)"
+  ruby -e "p \`git remote -v\`.match(/git@github.com:([a-zA-Z0-9\-]+)\/[a-zA-Z0-9_.\-]+/)"
+fi
+
+OWNER=$(ruby -e "puts \`git remote -v\`.match(/git@github.com:([a-zA-Z0-9\-]+)\/[a-zA-Z0-9_.\-]+/)[1]")
+
+if [ $VERBOSE -eq 1 ]; then
+  ruby -e "p \`git branch\`"
+  ruby -e "p \`git branch\`.match(/^\n\*\ ([a-zA-Z0-9]+)/)"
+fi
+
+BRANCH=$(ruby -e "puts \`git branch\`.match(/\n?\*\ ([a-zA-Z0-9\-_.]+)/)[1]")
+
+[[ VERBOSE -eq 1 ]] && echo "hub pull-request -h ${OWNER}:${BRANCH}"
+hub pull-request -h ${OWNER}:${BRANCH}
