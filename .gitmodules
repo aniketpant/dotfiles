@@ -1,0 +1,15 @@
+[submodule "vim/vim.symlink/bundle/Command-T"]
+	path = vim/vim.symlink/bundle/Command-T
+	url = git@github.com:wincent/Command-T.git
+[submodule "vim/vim.symlink/bundle/vim-colors-solarized"]
+	path = vim/vim.symlink/bundle/vim-colors-solarized
+	url = git@github.com:altercation/vim-colors-solarized.git
+[submodule "vim/vim.symlink/bundle/vim-powerline"]
+	path = vim/vim.symlink/bundle/vim-powerline
+	url = git@github.com:Lokaltog/vim-powerline.git
+[submodule "vim/vim.symlink/bundle/vim-sensible"]
+	path = vim/vim.symlink/bundle/vim-sensible
+	url = git@github.com:tpope/vim-sensible.git
+[submodule "vim/vim.symlink/bundle/vim-gitgutter"]
+	path = vim/vim.symlink/bundle/vim-gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
