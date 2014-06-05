@@ -1,11 +1,18 @@
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+export DOTFILES=$HOME/.dotfiles
 
 # your project folder that we can c [tab] to
 export PROJECTS=$HOME/Development
 
 # source every .zsh file in this repo
-for config_file ($ZSH/**/*.zsh) source $config_file
+for config_file ($DOTFILES/**/*.zsh) source $config_file
+
+# oh-my-zsh specifics
+export ZSH=$HOME/.oh-my-zsh
+ZSH_THEME="robbyrussell"
+plugins=(git vim)
+source $ZSH/oh-my-zsh.sh
+export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo
@@ -19,4 +26,4 @@ autoload -U compinit
 compinit
 
 # load every completion after autocomplete loads
-for config_file ($ZSH/**/completion.sh) source $config_file
+for config_file ($DOTFILES/**/completion.sh) source $config_file
