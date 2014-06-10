@@ -16,3 +16,12 @@
 [submodule "vim/vim.symlink/bundle/nerdtree"]
 	path = vim/vim.symlink/bundle/nerdtree
 	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/vim.symlink/bundle/ctrlp"]
+	path = vim/vim.symlink/bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/vim.symlink/bundle/detectindent"]
+	path = vim/vim.symlink/bundle/detectindent
+	url = git@github.com:ciaranm/detectindent.git
+[submodule "vim/vim.symlink/bundle/supertab"]
+	path = vim/vim.symlink/bundle/supertab
+	url = git@github.com:ervandew/supertab.git
