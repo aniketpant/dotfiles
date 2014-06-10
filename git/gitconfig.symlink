@@ -28,6 +28,7 @@
 #
 [color]
     ui = true
+    pager = true
 
 # Whitespace handling, editor config, global excludes
 #
