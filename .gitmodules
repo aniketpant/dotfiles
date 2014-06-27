@@ -28,3 +28,12 @@
 [submodule "vim/vim.symlink/bundle/MatchTag"]
 	path = vim/vim.symlink/bundle/MatchTag
 	url = git@github.com:gregsexton/MatchTag.git
+[submodule "vim/vim.symlink/bundle/nerdcommenter"]
+	path = vim/vim.symlink/bundle/nerdcommenter
+	url = git@github.com:scrooloose/nerdcommenter.git
+[submodule "vim/vim.symlink/bundle/delimitMate"]
+	path = vim/vim.symlink/bundle/delimitMate
+	url = git@github.com:Raimondi/delimitMate.git
+[submodule "vim/vim.symlink/bundle/vim-easymotion"]
+	path = vim/vim.symlink/bundle/vim-easymotion
+	url = git://github.com/Lokaltog/vim-easymotion
