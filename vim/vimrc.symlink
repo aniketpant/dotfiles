@@ -49,6 +49,7 @@ set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
 set wildmode=longest,list,full
 set hlsearch
+set cursorline
 
 " Colored column (to see line size violations)
 set colorcolumn=80
