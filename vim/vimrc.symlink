@@ -2,11 +2,9 @@
 " Aniket's vim settings
 "
 
-" infect with pathoge
+filetype off
 execute pathogen#infect()
-
-" Use Vim settings, rather then Vi settings (much better!).
-" This must be first, because it changes other options as a side effect.
+filetype plugin indent on
 set nocompatible
 
 " Use UTF-8 as the default buffer encoding
@@ -21,49 +19,79 @@ set history=100
 " Don't redraw while executing macros (good performance config)
 set lazyredraw
 
-" ensure ftdetect et al work by including this after the Vundle stuff
-filetype plugin indent on
+" Reload files when changed on disk, i.e. via `git checkout`
+set autoread
 
-set autoindent
-set autoread                                                 " reload files when changed on disk, i.e. via `git checkout`
-set backspace=2                                              " Fix broken backspace in some setups
-set backupcopy=yes                                           " see :help crontab
-set directory-=.                                             " don't store swapfiles in the current directory
-set backupdir=~/tmp                                          " create backupdir in ~/tmp
-set clipboard=unnamed                                        " yank and paste with the system clipboard
-set encoding=utf-8
-set expandtab                                                " expand tabs to spaces
-set ignorecase                                               " case-insensitive search
-set incsearch                                                " search as you type
+" Interface
+set cursorline
 set laststatus=2                                             " always show statusline
+set showcmd
 set list                                                     " show trailing whitespace
 set listchars=tab:▸\ ,trail:▫
 set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
+
+" yank and paste with the system clipboard
+set clipboard=unnamed
+
+" Backups and shit
+set nobackup
+set nowritebackup
+set noswapfile
+
+" Text Formatting
+set autoindent                                               " autoindent
+set smartindent                                              " be smart about it
 set shiftwidth=4                                             " normal mode indentation commands use 2 spaces
-set showcmd
-set smartcase                                                " case-sensitive search if any caps
-set softtabstop=4                                            " insert mode tab and backspace use 2 spaces
 set tabstop=4                                                " actual tabs occupy 8 characters
+set softtabstop=4                                            " insert mode tab and backspace use 2 spaces
+set backspace=2                                              " Fix broken backspace in some setups
+set expandtab                                                " expand tabs to spaces
+
+" Searching
+set hlsearch                                                 " highlight search results
+set ignorecase                                               " case-insensitive search
+set incsearch                                                " search as you type
+set smartcase                                                " case-sensitive search if any caps
+
+" Tab completion
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc
 set wildmenu                                                 " show a navigable menu for tab completion
-set wildmode=longest,list,full
-set hlsearch
-set cursorline
+set wildmode=list:longest,full
+
+" No sound. FTW.
+set visualbell
+
+" Color schemes
+set background=dark
+colorscheme solarized
 
 " Colored column (to see line size violations)
 set colorcolumn=80
 highlight ColorColumn ctermbg=238
-
-set background=dark
-colorscheme solarized
 
 " Enable basic mouse behavior such as resizing buffers.
 set mouse=a
 if exists('$TMUX')  " Support resizing in tmux
   set ttymouse=xterm2
 endif
+
+" ---------------------------------------------------------------------------
+"  " Remap the tab key to do autocompletion or indentation depending on the
+"  " context
+"  "
+"  ---------------------------------------------------------------------------
+function! InsertTabWrapper()
+    let col = col('.') - 1
+    if !col || getline('.')[col - 1] !~ '\k'
+        return "\<tab>"
+    else
+        return "\<c-p>"
+    endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
 
 " keyboard shortcuts
 let mapleader = ','
