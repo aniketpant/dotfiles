@@ -71,12 +71,6 @@ colorscheme solarized
 set colorcolumn=80
 highlight ColorColumn ctermbg=238
 
-" Enable basic mouse behavior such as resizing buffers.
-set mouse=a
-if exists('$TMUX')  " Support resizing in tmux
-  set ttymouse=xterm2
-endif
-
 " ---------------------------------------------------------------------------
 "  " Remap the tab key to do autocompletion or indentation depending on the
 "  " context
