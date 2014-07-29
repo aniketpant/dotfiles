@@ -16,6 +16,11 @@ set -g mouse-select-pane on
 set -g mouse-resize-pane on
 set -g mouse-select-window on
 
+# set unicode
+setw -g utf8 on
+setw -g status-utf8 on
+setw -g window-status-current-format "|#I:#W|"
+
 set-option -g default-shell "/bin/zsh"
 set-option -g default-terminal screen-256color
 

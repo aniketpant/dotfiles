@@ -14,6 +14,8 @@ source $ZSH/oh-my-zsh.sh
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
 export PATH=$DOTFILES/bin:/usr/local/bin:$PATH
 
+source $HOME/.profile
+
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo
 if [[ -a $HOME/.localrc ]]
