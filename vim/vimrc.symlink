@@ -104,6 +104,9 @@ noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo '
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
 
+" git commit
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
 " plugin settings
 let g:ctrlp_match_window = 'order:ttb,max:20'
 let g:NERDSpaceDelims=1
