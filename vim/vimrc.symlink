@@ -75,7 +75,7 @@ highlight ColorColumn ctermbg=238
 "  " Remap the tab key to do autocompletion or indentation depending on the
 "  " context
 "  "
-"  ---------------------------------------------------------------------------
+"  --------------------------------------------------------------------------
 function! InsertTabWrapper()
     let col = col('.') - 1
     if !col || getline('.')[col - 1] !~ '\k'
@@ -93,23 +93,21 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
-nnoremap <leader>t :CtrlP<CR>
-nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
 nnoremap <leader>g :GitGutterToggle<CR>
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
 " in case you forgot to sudo
 cnoremap w!! %!sudo tee > /dev/null %
 
-" git commit
+" ---------------------------------------------------------------------------
+"  " Filetype specific formatting
+"  "
+"  --------------------------------------------------------------------------
+
+" gitcommit
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" plugin settings
-let g:ctrlp_match_window = 'order:ttb,max:20'
-let g:NERDSpaceDelims=1
-let g:CommandTMaxHeight=20
-let g:CommandTCancelMap='<Esc>'
-let g:CommandTAcceptSelectionTabMap='t'
+" markdown
+autocmd Filetype markdown setlocal spell textwidth=80
