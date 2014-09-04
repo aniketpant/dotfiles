@@ -1,31 +1,35 @@
-local grid = require "grid"
+local application = require "mjolnir.application"
+local hotkey = require "mjolnir.hotkey"
+local window = require "mjolnir.window"
+local fnutils = require "mjolnir.fnutils"
+local grid = require "mjolnir.sd.grid"
 
 local mash = {"cmd", "alt", "ctrl"}
 local mashshift = {"cmd", "alt", "shift"}
 
--- requires: grid, core.fnutils, core.alert
+-- requires: grid, fnutils, alert
 
-core.hotkey.bind(mash, ';', function() grid.snap(core.window.focusedwindow()) end)
-core.hotkey.bind(mash, "'", function() core.fnutils.map(core.window.visiblewindows(), grid.snap) end)
+hotkey.bind(mash, ';', function() grid.snap(window.focusedwindow()) end)
+hotkey.bind(mash, "'", function() fnutils.map(window.visiblewindows(), grid.snap) end)
 
-core.hotkey.bind(mash, '=', function() grid.adjustwidth( 1) end)
-core.hotkey.bind(mash, '-', function() grid.adjustwidth(-1) end)
+hotkey.bind(mash, '=', function() grid.adjustwidth( 1) end)
+hotkey.bind(mash, '-', function() grid.adjustwidth(-1) end)
 
-core.hotkey.bind(mashshift, 'H', function() core.window.focusedwindow():focuswindow_west() end)
-core.hotkey.bind(mashshift, 'L', function() core.window.focusedwindow():focuswindow_east() end)
-core.hotkey.bind(mashshift, 'K', function() core.window.focusedwindow():focuswindow_north() end)
-core.hotkey.bind(mashshift, 'J', function() core.window.focusedwindow():focuswindow_south() end)
+hotkey.bind(mashshift, 'H', function() window.focusedwindow():focuswindow_west() end)
+hotkey.bind(mashshift, 'L', function() window.focusedwindow():focuswindow_east() end)
+hotkey.bind(mashshift, 'K', function() window.focusedwindow():focuswindow_north() end)
+hotkey.bind(mashshift, 'J', function() window.focusedwindow():focuswindow_south() end)
 
-core.hotkey.bind(mash, 'M', grid.maximize_window)
+hotkey.bind(mash, 'M', grid.maximize_window)
 
-core.hotkey.bind(mash, 'N', grid.pushwindow_nextscreen)
-core.hotkey.bind(mash, 'P', grid.pushwindow_prevscreen)
+hotkey.bind(mash, 'N', grid.pushwindow_nextscreen)
+hotkey.bind(mash, 'P', grid.pushwindow_prevscreen)
 
-core.hotkey.bind(mash, 'J', grid.pushwindow_down)
-core.hotkey.bind(mash, 'K', grid.pushwindow_up)
-core.hotkey.bind(mash, 'H', grid.pushwindow_left)
-core.hotkey.bind(mash, 'L', grid.pushwindow_right)
+hotkey.bind(mash, 'J', grid.pushwindow_down)
+hotkey.bind(mash, 'K', grid.pushwindow_up)
+hotkey.bind(mash, 'H', grid.pushwindow_left)
+hotkey.bind(mash, 'L', grid.pushwindow_right)
 
-core.hotkey.bind(mash, 'U', grid.resizewindow_taller)
-core.hotkey.bind(mash, 'O', grid.resizewindow_wider)
-core.hotkey.bind(mash, 'I', grid.resizewindow_thinner)
+hotkey.bind(mash, 'U', grid.resizewindow_taller)
+hotkey.bind(mash, 'O', grid.resizewindow_wider)
+hotkey.bind(mash, 'I', grid.resizewindow_thinner)
