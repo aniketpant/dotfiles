@@ -28,4 +28,10 @@ autoload -U compinit
 compinit
 
 # load every completion after autocomplete loads
-for config_file ($DOTFILES/**/completion.sh) source $config_file
+for config_file ($DOTFILES/**/completion.sh)
+do
+  if test -f $config_file
+  then
+    source $config_file
+  fi
+done
