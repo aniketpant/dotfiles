@@ -22,3 +22,6 @@
 [submodule "vim/vim.symlink/bundle/tcomment"]
 	path = vim/vim.symlink/bundle/tcomment
 	url = git@github.com:tomtom/tcomment_vim.git
+[submodule "vim/vim.symlink/bundle/vim-javascript"]
+	path = vim/vim.symlink/bundle/vim-javascript
+	url = git@github.com:pangloss/vim-javascript.git
