@@ -10,9 +10,6 @@
 [submodule "vim/vim.symlink/bundle/vim-gitgutter"]
 	path = vim/vim.symlink/bundle/vim-gitgutter
 	url = git@github.com:airblade/vim-gitgutter.git
-[submodule "vim/vim.symlink/bundle/detectindent"]
-	path = vim/vim.symlink/bundle/detectindent
-	url = git@github.com:ciaranm/detectindent.git
 [submodule "vim/vim.symlink/bundle/supertab"]
 	path = vim/vim.symlink/bundle/supertab
 	url = git@github.com:ervandew/supertab.git

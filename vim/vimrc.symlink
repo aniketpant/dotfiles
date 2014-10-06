@@ -97,11 +97,6 @@ nnoremap <leader>g :GitGutterToggle<CR>
 nnoremap <leader>t :tabnew<Space>
 noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo 'vimrc reloaded'"<CR>
 
-let g:detectindent_preferred_expandtab = 1
-let g:detectindent_preferred_indent = 2
-let g:detectindent_max_lines_to_analyse = 1024
-autocmd BufReadPost * :DetectIndent " Run automatically when opening a file
-
 autocmd VimResized * :wincmd =
 
 " in case you forgot to sudo
