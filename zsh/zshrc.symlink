@@ -7,7 +7,7 @@ for config_file ($DOTFILES/**/*.zsh) source $config_file
 # oh-my-zsh specifics
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
-plugins=(brew git github ruby sudo tmux)
+plugins=(brew git ruby tmux)
 source $ZSH/oh-my-zsh.sh
 
 # export bin paths
