@@ -44,6 +44,7 @@ set noswapfile
 set autoindent                                               " autoindent
 set smartindent                                              " be smart about it
 set shiftwidth=2                                             " normal mode indentation commands use 2 spaces
+set shiftround                                               " use multiple of shiftwidth when indenting with '<' and '>'
 set tabstop=2                                                " actual tabs occupy 8 characters
 set softtabstop=2                                            " insert mode tab and backspace use 2 spaces
 set backspace=2                                              " Fix broken backspace in some setups
@@ -64,12 +65,19 @@ set wildmode=list:longest,full
 set visualbell
 
 " Color schemes
-set background=dark
-colorscheme solarized
+if &t_Co >= 256 || has("gui_running")
+  set background=dark
+  colorscheme solarized
+  highlight ColorColumn ctermbg=238
+endif
+
+if &t_Co > 2 || has("gui_running")
+  " switch syntax highlighting on, when the terminal has colors
+  syntax on
+endif
 
 " Colored column (to see line size violations)
 set colorcolumn=80
-highlight ColorColumn ctermbg=238
 
 " ---------------------------------------------------------------------------
 "  " Remap the tab key to do autocompletion or indentation depending on the
@@ -122,7 +130,6 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 
 " markdown
 autocmd Filetype markdown setlocal spell textwidth=80
-
 
 " Go crazy!
 if filereadable(expand("~/.vimrc.local"))
