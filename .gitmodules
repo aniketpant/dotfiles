@@ -25,3 +25,6 @@
 [submodule "vim/vim.symlink/bundle/vim-php-indent"]
 	path = vim/vim.symlink/bundle/vim-php-indent
 	url = git@github.com:2072/php-indenting-for-vim
+[submodule "vim/vim.symlink/bundle/powerline"]
+	path = vim/vim.symlink/bundle/powerline
+	url = git@github.com:powerline/powerline.git
