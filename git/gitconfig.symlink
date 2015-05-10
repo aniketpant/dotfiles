@@ -75,5 +75,5 @@
     clean = git-media-clean %f
     smudge = git-media-smudge %f
 [rerere]
-	enabled = true
-	autoupdate = true
+    enabled = true
+    autoupdate = true
