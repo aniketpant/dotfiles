@@ -61,6 +61,7 @@
     count = shortlog -sn
     ll = log --pretty=oneline --abbrev-commit --max-count=15
     stats = shortlog -sn
+    diffy = "difftool --extcmd=\"colordiff --suppress-common-lines -dyw\""
 
 # Git Applications
 #
