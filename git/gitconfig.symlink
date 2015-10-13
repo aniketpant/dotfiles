@@ -37,6 +37,9 @@
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
     excludesfile = ~/.gitignore
 
+[commit]
+    template = ~/.gitmessage
+
 # Useful aliases
 #
 [alias]
@@ -62,6 +65,7 @@
     ll = log --pretty=oneline --abbrev-commit --max-count=15
     stats = shortlog -sn
     diffy = "difftool --extcmd=\"colordiff --suppress-common-lines -dyw\""
+    co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
 
 # Git Applications
 #
@@ -78,3 +82,5 @@
 [rerere]
     enabled = true
     autoupdate = true
+[http]
+	sslVerify = false
