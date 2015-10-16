@@ -10,12 +10,6 @@ bind-key R source-file ~/.tmux.conf \; display-message "tmux.conf reloaded."
 # vi is good
 setw -g mode-keys vi
 
-# Make mouse useful in copy mode
-setw -g mode-mouse on
-
-# Allow mouse to select which pane to use
-set -g mouse-select-pane on
-
 # Scroll History
 set -g history-limit 30000
 
