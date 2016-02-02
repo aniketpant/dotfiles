@@ -8,6 +8,7 @@
 #
 [branch]
     autosetupmerge = true
+    autosetuprebase = always
 
 # Pretty format
 #
