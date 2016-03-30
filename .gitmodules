@@ -34,3 +34,12 @@
 [submodule "vim/vim.symlink/bundle/vim-go"]
 	path = vim/vim.symlink/bundle/vim-go
 	url = git@github.com:fatih/vim-go
+[submodule "vim/vim.symlink/bundle/vim-flake8"]
+	path = vim/vim.symlink/bundle/vim-flake8
+	url = git@github.com:nvie/vim-flake8
+[submodule "vim/vim.symlink/bundle/python-syntax"]
+	path = vim/vim.symlink/bundle/python-syntax
+	url = git@github.com:hdima/python-syntax
+[submodule "vim/vim.symlink/bundle/vim-nodejs"]
+	path = vim/vim.symlink/bundle/vim-nodejs
+	url = git@github.com:mmalecki/vim-node.js
