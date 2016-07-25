@@ -10,16 +10,17 @@ config windowHintsIgnoreHiddenWindows false
 #config windowHintsDuration 5
 config windowHintsSpread true
 #config windowHintsOrder persist
+config keyboardLayout dvorak
 
 # Monitor Aliases
 alias mon-laptop      0
-alias mon-samsung    1
+alias mon-dell    1
 
 # Misc Aliases
 alias showHintsLeftHand hint AOEUIYQJKX
 alias showNormalHint hint AOEUIDHTNSYXFBPKGMCW
-alias browser 'Nightly'
-alias editor 'MacVim'
+alias browser 'Chrome'
+alias editor 'Atom'
 
 # Abstract positions
 alias full          move screenOriginX;screenOriginY                  screenSizeX;screenSizeY
@@ -33,37 +34,28 @@ alias leftless      move screenOriginX;screenOriginY                  screenSize
 alias 1-full        move screenOriginX;screenOriginY screenSizeX;screenSizeY         ${mon-laptop}
 alias 1-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
 alias 1-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-laptop}
-alias 2-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-samsung}
-alias 2-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-samsung}
-alias 2-righttop    move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2       ${mon-samsung}
-alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2    screenSizeX/2;screenSizeY/2       ${mon-samsung}
+alias 2-left        move screenOriginX;screenOriginY screenSizeX/2;screenSizeY         ${mon-dell}
+alias 2-right       move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY         ${mon-dell}
+alias 2-righttop    move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY/2       ${mon-dell}
+alias 2-rightbottom move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2    screenSizeX/2;screenSizeY/2       ${mon-dell}
 
 # 2 Monitor layout
 layout 2monitors 'iTerm':MAIN_FIRST                       ${2-rightbottom} | ${1-left}
-layout 2monitors 'Safari':REPEAT                          ${1-full}
-layout 2monitors 'Nightly':REPEAT                          ${1-full}
-layout 2monitors 'Sublime Text 2':REPEAT              ${1-full}
-layout 2monitors 'MacVim':REPEAT                      ${1-full}
-layout 2monitors 'Mail':MAIN_FIRST                        ${2-left}
+layout 2monitors 'Chrome':REPEAT                          ${1-full}
+layout 2monitors 'Atom':REPEAT              ${1-full}
 layout 2monitors 'Path Finder':MAIN_FIRST                 ${2-righttop}
-layout 2monitors 'Xcode':REPEAT                           ${1-full}
-layout 2monitors 'Eclipse':REPEAT                         ${1-full}
 layout 2monitors 'iTunes':REPEAT                          ${1-full}
 
 # 1 Monitor layout
 layout 1monitor 'iTerm':MAIN_FIRST                       ${1-right}
-layout 1monitor 'Sublime Text 2':MAIN_FIRST              ${1-left}
-layout 1monitor 'MacVim':MAIN_FIRST                      ${1-left}
-layout 1monitor 'Safari':REPEAT                          ${1-full}
-layout 1monitor 'Nightly':REPEAT                          ${1-full}
-layout 1monitor 'Mail':MAIN_FIRST                        ${1-full}
+layout 1monitor 'Atom':MAIN_FIRST              ${1-left}
+layout 1monitor 'Chrome':REPEAT                          ${1-full}
 layout 1monitor 'Path Finder':MAIN_FIRST                 ${1-full}
-layout 1monitor 'Xcode':REPEAT                           ${1-full}
-layout 1monitor 'Eclipse':REPEAT                         ${1-full}
+layout 1monitor 'Atom':REPEAT                           ${1-full}
 layout 1monitor 'iTunes':REPEAT                          ${1-full}
 
 # Default Layouts
-default 2monitors resolutions:${mon-laptop};${mon-samsung};
+default 2monitors resolutions:${mon-laptop};${mon-dell};
 default 1monitor  resolutions:${mon-laptop}
 
 # Numpad location Bindings
@@ -77,7 +69,7 @@ bind pad6 ${righthalf}
 bind pad7 ${leftmost}
 bind pad8 push top bar-resize:screenSizeY/2
 bind pad9 ${rightmost}
-bind padEnter grid padding:5 ${mon-laptop}:6,2 ${mon-samsung}:8,3
+bind padEnter grid padding:5 ${mon-laptop}:6,2 ${mon-dell}:8,3
 bind pad+ throw next
 bind pad. focus behind
 bind pad* layout 2monitors
@@ -92,10 +84,10 @@ bind e:cmd  ${showNormalHint}
 alias hyper ctrl;alt;cmd
 
 # Location bindings
-bind t:${hyper} ${lefthalf}
-bind n:${hyper} ${full}
-bind s:${hyper} ${righthalf}
-bind r:${hyper} throw next
+bind h:${hyper} ${lefthalf}
+bind m:${hyper} ${full}
+bind l:${hyper} ${righthalf}
+bind n:${hyper} throw next
 
 # Resize Bindings
 #bind r:${hyper} ${leftmost}
@@ -110,8 +102,6 @@ bind down:${hyper}     focus down
 # App bindings
 bind e:${hyper} focus ${browser}
 bind u:${hyper} focus ${editor}
-bind x:${hyper} focus 'Xcode'
-bind g:${hyper} focus 'GitHub'
-bind m:${hyper} focus 'Mail'
+bind x:${hyper} focus 'Atom'
 bind i:${hyper} focus 'iTerm'
 bind o:${hyper} focus 'Path Finder'
