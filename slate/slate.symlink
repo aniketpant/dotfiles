@@ -10,7 +10,6 @@ config windowHintsIgnoreHiddenWindows false
 #config windowHintsDuration 5
 config windowHintsSpread true
 #config windowHintsOrder persist
-config keyboardLayout dvorak
 
 # Monitor Aliases
 alias mon-laptop      0
