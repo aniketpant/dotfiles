@@ -67,7 +67,7 @@ set visualbell
 " Color schemes
 if &t_Co >= 256 || has("gui_running")
   set background=dark
-  colorscheme solarized
+  " colorscheme solarized
   highlight ColorColumn ctermbg=238
 endif
 
