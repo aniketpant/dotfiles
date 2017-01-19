@@ -4,7 +4,26 @@
 
 filetype off
 filetype plugin indent on
-execute pathogen#infect()
+
+call plug#begin()
+Plug 'altercation/vim-colors-solarized'
+Plug 'airblade/vim-gitgutter'
+Plug 'ervandew/supertab'
+Plug 'gregsexton/MatchTag'
+Plug 'tomtom/tcomment_vim'
+Plug 'groenewege/vim-less'
+Plug 'pangloss/vim-javascript'
+Plug '2072/php-indenting-for-vim'
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-abolish'
+Plug 'mileszs/ack.vim'
+Plug 'fatih/vim-go'
+Plug 'nvie/vim-flake8'
+Plug 'hdima/python-syntax'
+Plug 'mmalecki/vim-node.js'
+Plug 'vim-airline/vim-airline-themes'
+call plug#end()
+
 set nocompatible
 
 " Use UTF-8 as the default buffer encoding
