@@ -2,26 +2,22 @@
 " Aniket's vim settings
 "
 
-filetype off
-filetype plugin indent on
-
 call plug#begin()
-Plug 'altercation/vim-colors-solarized'
+Plug 'tomasiser/vim-code-dark'
 Plug 'airblade/vim-gitgutter'
 Plug 'ervandew/supertab'
 Plug 'gregsexton/MatchTag'
 Plug 'tomtom/tcomment_vim'
-Plug 'groenewege/vim-less'
-Plug 'pangloss/vim-javascript'
-Plug '2072/php-indenting-for-vim'
 Plug 'bling/vim-airline'
 Plug 'tpope/vim-abolish'
 Plug 'mileszs/ack.vim'
-Plug 'fatih/vim-go'
-Plug 'nvie/vim-flake8'
-Plug 'hdima/python-syntax'
-Plug 'mmalecki/vim-node.js'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug '2072/php-indenting-for-vim', { 'for': 'php' }
+Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'python-mode/python-mode', { 'for': 'python' }
+Plug 'mmalecki/vim-node.js', { 'for': 'javascript' }
 call plug#end()
 
 set nocompatible
@@ -85,8 +81,7 @@ set visualbell
 
 " Color schemes
 if &t_Co >= 256 || has("gui_running")
-  set background=dark
-  " colorscheme solarized
+    colorscheme codedark
   highlight ColorColumn ctermbg=238
 endif
 
@@ -96,7 +91,13 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Colored column (to see line size violations)
-set colorcolumn=80
+set colorcolumn=100
+
+" VimR specific
+if has("gui_vimr")
+    set termguicolors
+    set title
+endif
 
 " ---------------------------------------------------------------------------
 "  " Remap the tab key to do autocompletion or indentation depending on the
@@ -127,8 +128,8 @@ noremap <silent> <leader>V :source ~/.vimrc<CR>:filetype detect<CR>:exe ":echo '
 nnoremap + :s#\(\%(\<\l\+\)\%(_\)\@=\)\|_\(\l\)#\u\1\2#g
 nnoremap _ f_x~
 
-" bind K to grep word under cursor
-nnoremap K :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
+" bind L to grep word under cursor
+nnoremap L :Ack! "\b<C-R><C-W>\b"<CR>:cw<CR>
 nnoremap \ :Ack<SPACE>
 
 autocmd VimResized * :wincmd =
@@ -146,7 +147,7 @@ endif
 "  --------------------------------------------------------------------------
 
 " airline
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'codedark'
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
