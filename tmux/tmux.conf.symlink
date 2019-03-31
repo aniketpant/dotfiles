@@ -20,8 +20,6 @@ setw -g alternate-screen on
 set -s escape-time 50
 
 # set unicode
-setw -g utf8 on
-setw -g status-utf8 on
 setw -g window-status-current-format "|#I:#W|"
 
 set-option -g default-shell "/bin/zsh"
@@ -103,6 +101,6 @@ set-option -g repeat-time 0
 # Rather than constraining window size to the maximum size of any client 
 # connected to the *session*, constrain window size to the maximum size of any 
 # client connected to *that window*. Much more reasonable.
-setw -g aggressive-resize on
+# setw -g aggressive-resize on
 
 source-file ~/.tmux.conf.local

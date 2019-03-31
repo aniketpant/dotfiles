@@ -1,30 +1,12 @@
 # shortcut to this dotfiles path is $ZSH
 export DOTFILES=$HOME/.dotfiles
 
-# source every .zsh file in this repo
-for config_file ($DOTFILES/**/*.zsh) source $config_file
-
 # source antigen
 source $DOTFILES/antigen/antigen.zsh
+antigen init .antigenrc
 
-# use oh-my-zsh
-antigen use oh-my-zsh
-
-# get antigen bundles
-antigen bundle autojump
-antigen bundle git
-antigen bundle git-extras
-antigen bundle pip
-antigen bundle tmux
-
-# syntax highlighting bundle.
-antigen bundle zsh-users/zsh-syntax-highlighting
-
-# load the theme.
-antigen theme robbyrussell
-
-# antigen should be done
-antigen apply
+# source every .zsh file in this repo
+for config_file ($DOTFILES/**/*.zsh) source $config_file
 
 # export bin paths
 export PATH=$HOME/.local/bin:/usr/local/bin:$PATH
@@ -32,7 +14,7 @@ export PATH=$DOTFILES/bin:/usr/local/bin:$PATH
 
 source $HOME/.profile
 
-unsetopt ignoreeof
+unsetopt ignoreeof nomatch
 
 # use .localrc for SUPER SECRET CRAP that you don't
 # want in your public, versioned repo
@@ -53,3 +35,4 @@ do
     source $config_file
   fi
 done
+brew analytics off 2>&1 >/dev/null

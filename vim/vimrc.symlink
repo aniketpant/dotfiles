@@ -91,7 +91,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Colored column (to see line size violations)
-set colorcolumn=100
+set colorcolumn=80,120
 
 " VimR specific
 if has("gui_vimr")
@@ -157,7 +157,7 @@ let g:airline_right_sep = ''
 "  --------------------------------------------------------------------------
 
 " gitcommit
-autocmd Filetype gitcommit setlocal spell textwidth=72
+autocmd Filetype gitcommit setlocal spell textwidth=72 colorcolumn=50,72
 
 " markdown
 autocmd Filetype markdown setlocal spell textwidth=80
