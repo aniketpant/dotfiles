@@ -1,9 +1,23 @@
 # shortcut to this dotfiles path is $ZSH
 export DOTFILES=$HOME/.dotfiles
 
-# source antigen
-source $DOTFILES/antigen/antigen.zsh
-antigen init .antigenrc
+# source zgen
+source $DOTFILES/zgen/zgen.zsh
+if ! zgen saved; then
+
+  # specify plugins here
+  zgen oh-my-zsh
+  zgen oh-my-zsh plugins/git
+  zgen oh-my-zsh plugins/autojump
+
+  # zgen load tj/git-extras
+  zgen load zsh-users/zsh-syntax-highlighting
+  zgen load BrandonRoehl/zsh-clean
+  zgen load unixorn/autoupdate-zgen
+
+  # generate the init script from plugins above
+  zgen save
+fi
 
 # source every .zsh file in this repo
 for config_file ($DOTFILES/**/*.zsh) source $config_file
