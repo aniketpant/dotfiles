@@ -12,6 +12,7 @@ Plug 'bling/vim-airline'
 Plug 'tpope/vim-abolish'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'arcticicestudio/nord-vim'
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug '2072/php-indenting-for-vim', { 'for': 'php' }
