@@ -1,5 +1,9 @@
+# zmodload zsh/zprof  
 # shortcut to this dotfiles path is $ZSH
 export DOTFILES=$HOME/.dotfiles
+
+# history
+setopt hist_ignore_all_dups hist_save_nodups
 
 # source zgen
 source $DOTFILES/zgen/zgen.zsh
@@ -38,8 +42,12 @@ then
 fi
 
 # initialize autocomplete here, otherwise function won't be loaded
-autoload -U compinit
-compinit
+# autoload -Uz compinit
+if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
+  compinit
+else
+  compinit -C
+fi
 
 # load every completion after autocomplete loads
 for config_file ($DOTFILES/**/completion.sh)
@@ -50,3 +58,8 @@ do
   fi
 done
 brew analytics off 2>&1 >/dev/null
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+zstyle ':vcs_info:*' disable-patterns "$HOME/go-code(|/*)"
+# zprof

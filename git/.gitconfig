@@ -1,0 +1,100 @@
+# User information. Replace with your own data, obviously.
+#
+[user]
+  name = Aniket Pant
+  email = me@aniketpant.com
+
+# Automatically track branches with the same name
+#
+[branch]
+  autosetupmerge = true
+  autosetuprebase = always
+
+# Pretty format
+#
+# [format]
+#     pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
+
+# Push the current branch as the default behaviour
+#
+[push]
+  default = current
+
+# Include a summary of changes in merge commit messages.
+#
+[merge]
+  summary = true
+
+# Color configuration.
+#
+[color]
+  ui = true
+  pager = true
+
+# Whitespace handling, editor config, global excludes
+#
+[core]
+  editor = vim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.gitignore
+  untrackedCache = true
+  ignorecase = false
+  pager = delta
+
+[commit]
+  template = ~/.gitmessage
+
+# Useful aliases
+#
+[alias]
+  undo = reset --soft HEAD^
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  df = diff
+  dc = diff --cached
+  ls = ls-files
+  aa = add --all
+  type = cat-file -t
+  dump = cat-file -p
+  amend = commit --amend
+  pyll = pull
+  hist = "log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short"
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)%Creset' --abbrev-commit
+  l = log --graph --abbrev-commit --date=relative
+  count = shortlog -sn
+  ll = log --pretty=oneline --abbrev-commit --max-count=15
+  stats = shortlog -sn
+  diffy = "difftool --extcmd=\"colordiff --suppress-common-lines -dyw\""
+  co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+
+# Delta
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  syntax-theme = Monokai Extended
+
+[delta "decorations"]
+  commit-decoration-style = bold ul
+  file-style = bold ul
+  file-decoration-style = none
+
+# Git Applications
+#
+[github]
+  user = aniketpant
+[credential]
+  helper = cache
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+[rerere]
+  enabled = true
+  autoupdate = true
+[http]
+  sslVerify = true
