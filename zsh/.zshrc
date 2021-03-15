@@ -5,23 +5,21 @@ export DOTFILES=$HOME/.dotfiles
 # history
 setopt hist_ignore_all_dups hist_save_nodups
 
-# source zgen
-source $DOTFILES/zgen/zgen.zsh
-if ! zgen saved; then
+source "$HOME/.zinit/bin/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 
-  # specify plugins here
-  zgen oh-my-zsh
-  zgen oh-my-zsh plugins/git
-  zgen oh-my-zsh plugins/autojump
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    BrandonRoehl/zsh-clean
 
-  # zgen load tj/git-extras
-  zgen load zsh-users/zsh-syntax-highlighting
-  zgen load BrandonRoehl/zsh-clean
-  zgen load unixorn/autoupdate-zgen
-
-  # generate the init script from plugins above
-  zgen save
-fi
+zinit wait lucid for \
+    zsh-users/zsh-autosuggestions \
+    zdharma/fast-syntax-highlighting \
+    zdharma/history-search-multi-word \
+    OMZ::plugins/git/git.plugin.zsh \
+    OMZ::plugins/autojump/autojump.plugin.zsh \
 
 # source every .zsh file in this repo
 for config_file ($DOTFILES/**/*.zsh) source $config_file
@@ -41,12 +39,9 @@ then
   source $HOME/.localrc
 fi
 
-# initialize autocomplete here, otherwise function won't be loaded
-# autoload -Uz compinit
-if [ $(date +'%j') != $(stat -f '%Sm' -t '%j' ~/.zcompdump) ]; then
-  compinit
-else
-  compinit -C
+if type brew &>/dev/null; then
+  FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
+  brew analytics off 2>&1 >/dev/null
 fi
 
 # load every completion after autocomplete loads
@@ -57,7 +52,6 @@ do
     source $config_file
   fi
 done
-brew analytics off 2>&1 >/dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
