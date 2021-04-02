@@ -11,15 +11,25 @@ autoload -Uz _zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-zinit light-mode for \
-    BrandonRoehl/zsh-clean
+zinit ice from"gh-r" as"program"
+zinit load junegunn/fzf-bin
 
 zinit wait lucid for \
-    zsh-users/zsh-autosuggestions \
-    zdharma/fast-syntax-highlighting \
     zdharma/history-search-multi-word \
     OMZ::plugins/git/git.plugin.zsh \
     OMZ::plugins/autojump/autojump.plugin.zsh \
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay" \
+    zdharma/fast-syntax-highlighting \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions \
+ blockf \
+    zsh-users/zsh-completions
+
+zinit light-mode for \
+    BrandonRoehl/zsh-clean \
+    Aloxaf/fzf-tab \
 
 # source every .zsh file in this repo
 for config_file ($DOTFILES/**/*.zsh) source $config_file
@@ -43,17 +53,6 @@ if type brew &>/dev/null; then
   FPATH=$(brew --prefix)/share/zsh/site-functions:$FPATH
   brew analytics off 2>&1 >/dev/null
 fi
-
-# load every completion after autocomplete loads
-for config_file ($DOTFILES/**/completion.sh)
-do
-  if test -f $config_file
-  then
-    source $config_file
-  fi
-done
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 zstyle ':vcs_info:*' disable-patterns "$HOME/go-code(|/*)"
 # zprof
