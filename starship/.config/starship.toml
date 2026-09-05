@@ -1,0 +1,120 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+# Two-line prompt: context on line 1, input on line 2
+format = """
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$git_metrics\
+$cmd_duration\
+$line_break\
+$python\
+$nodejs\
+$golang\
+$rust\
+$java\
+$kubernetes\
+$docker_context\
+$character"""
+
+# Add a blank line before each prompt for readability
+add_newline = true
+
+[directory]
+style = "blue"
+truncation_length = 3
+truncate_to_repo = true
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[git_branch]
+format = "[$branch]($style)"
+style = "bright-black"
+
+[git_status]
+format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[git_metrics]
+format = '([+$added]($added_style) [-$deleted]($deleted_style) )'
+added_style = "green"
+deleted_style = "red"
+disabled = false
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+min_time = 2_000  # only show if command took >2s
+
+[status]
+disabled = false
+format = '[$symbol]($style) '
+symbol = '✘'
+success_symbol = ''
+style = "red"
+
+[python]
+format = "[$virtualenv]($style) "
+style = "bright-black"
+detect_extensions = []
+detect_files = []
+
+[nodejs]
+format = "[$version]($style) "
+style = "green"
+detect_files = ["package.json", ".nvmrc", "tsconfig.json"]
+detect_folders = ["node_modules"]
+
+[golang]
+format = "[$version]($style) "
+style = "cyan"
+detect_files = ["go.mod", "go.sum", "glide.yaml"]
+detect_folders = ["cmd", "internal", "pkg"]
+
+[rust]
+format = "[$version]($style) "
+style = "red"
+detect_files = ["Cargo.toml"]
+
+[java]
+format = "[$version]($style) "
+style = "red"
+detect_files = ["pom.xml", "build.gradle", "build.gradle.kts", ".java-version"]
+
+[kubernetes]
+disabled = true
+format = '[$context]($style) '
+style = "cyan"
+
+[docker_context]
+disabled = true
+format = '[$context]($style) '
+style = "blue"
+
+[hostname]
+ssh_only = true
+format = '[$hostname]($style) '
+style = "green"
+
+[username]
+show_always = false
+format = '[$user]($style) '
+style_user = 'bright-black'
+style_root = 'red'

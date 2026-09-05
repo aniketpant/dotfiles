@@ -1,13 +1,15 @@
-Title
+[] 
 
-Why:
-
-- ...
-
-This change addresses the need by:
-
-- ...
-
-# 50-character subject line
+# Format:
+#   [<type>] <subject>
 #
-# 72-character wrapped longer description.
+# Types: feat, fix, refactor, docs, test, chore, perf, ci
+# Subject: imperative mood, ≤50 chars, no period
+#
+# Body (wrap at 72 chars):
+#   - What changed
+#   - Why it changed
+#
+# Footer:
+#   Closes #123
+#   BREAKING CHANGE: <description>

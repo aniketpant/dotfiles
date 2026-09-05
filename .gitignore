@@ -1,3 +1,37 @@
+# macOS
 .DS_Store
+
+# Editor backups and temp files
 *~
 *#*
+*.swp
+*.swo
+.*.swp
+*.tmp
+
+# Backup files
+*.backup
+*.bak
+*.backup.*
+
+# Local overrides (not versioned)
+.localrc
+
+# Shell history
+.zsh_history
+.bash_history
+
+# IDE/Editor
+.vscode/
+.idea/
+*.sublime-*
+
+# Node/Package managers
+node_modules/
+.npm
+.yarn
+
+# Environment
+.env
+.env.local
+.env.*.local

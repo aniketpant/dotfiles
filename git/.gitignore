@@ -1,8 +1,29 @@
-.rbenv-gemsets
-.rbenv-version
+# macOS
 .DS_Store
-.svn
-.tissues
+.AppleDouble
+.LSOverride
+
+# Editor backups
 *~
 *.swp
-*.rbc
+*.swo
+.*.swp
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Node
+node_modules/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+
+# OS
+Thumbs.db
