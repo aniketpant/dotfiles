@@ -11,6 +11,8 @@ Personal Zsh dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/
 │   ├── .gitconfig    # global git config (personal email)
 │   ├── .gitignore    # global gitignore
 │   └── .gitmessage   # commit message template
+├── scripts/
+│   └── setup-ubuntu.sh # Ubuntu package & repository installer
 ├── starship/
 │   └── .config/
 │       └── starship.toml  # prompt config
@@ -21,18 +23,34 @@ Personal Zsh dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/
 │   ├── prompt.zsh    # prompt config (Starship handles this)
 │   ├── window.zsh    # terminal window title helper
 │   └── functions/    # autoloaded zsh functions
-└── Makefile          # install / clean / update targets
+└── Makefile          # install / clean / update / setup targets
 ```
 
 ## Install
 
+### 1. Ubuntu Package Setup
+
+On Ubuntu, install system packages, repositories, and modern CLI tools:
+
 ```sh
 git clone https://github.com/aniketp/dotfiles ~/.dotfiles
 cd ~/.dotfiles
+make setup-ubuntu
+```
+
+This installs:
+- **Terminal & Editors:** [Ghostty](https://ghostty.org), Neovim, Vim
+- **Git & Pagers:** `git-delta` (syntax-highlighted pager), `bat` (modern `cat`)
+- **Shell & Utilities:** `zsh`, GNU Stow, `eza` (via official Gierens APT repo), `fzf`, `direnv`, `starship`, `zoxide`, `ripgrep`
+
+### 2. Stow Configurations
+
+```sh
 make install
 ```
 
 `make install` stows `git`, `zsh`, `bin`, and `starship` into `$HOME`.
+
 
 ## Plugin Manager
 

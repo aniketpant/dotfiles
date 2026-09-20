@@ -41,8 +41,8 @@ zinit wait'0a' lucid atload'eval "$(zoxide init zsh)"; eval "$(direnv hook zsh)"
     zdharma-continuum/null
 
 # JAVA_HOME - defer to avoid subprocess call during startup
-zinit wait'0c' lucid atload'export JAVA_HOME="$(/usr/libexec/java_home -v11 -aarm64)"; export PATH=$JAVA_HOME/bin:$PATH' for \
-    zdharma-continuum/null
+# zinit wait'0c' lucid atload'export JAVA_HOME="$(/usr/libexec/java_home -v11 -aarm64)"; export PATH=$JAVA_HOME/bin:$PATH' for \
+#     zdharma-continuum/null
 
 # ============================================================================
 # LOAD LOCAL CONFIG FILES
@@ -98,7 +98,7 @@ export NVM_LAZY_LOAD=true
 # ============================================================================
 # Source fzf keybindings and completions if available
 zinit wait'0b' lucid has'fzf' for \
-    atload'source "$HOME/.local/share/zinit/plugins/junegunn---fzf-bin/shell/key-bindings.zsh 2>/dev/null; source "$HOME/.local/share/zinit/plugins/junegunn---fzf-bin/shell/completion.zsh 2>/dev/null"' \
+    atload'source "$HOME/.local/share/zinit/plugins/junegunn---fzf-bin/shell/key-bindings.zsh" 2>/dev/null; source "$HOME/.local/share/zinit/plugins/junegunn---fzf-bin/shell/completion.zsh" 2>/dev/null' \
     zdharma-continuum/null
 
 # ============================================================================
@@ -106,13 +106,13 @@ zinit wait'0b' lucid has'fzf' for \
 # ============================================================================
 
 # iTerm2 shell integration (if available)
-test -e /Users/aniketp/.iterm2_shell_integration.zsh && source /Users/aniketp/.iterm2_shell_integration.zsh || true
+test -e "$HOME/.iterm2_shell_integration.zsh" && source "$HOME/.iterm2_shell_integration.zsh" || true
 
 # Bun JavaScript runtime
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
 # Bun completions (if available)
-[ -s "/Users/aniketp/.bun/_bun" ] && source "/Users/aniketp/.bun/_bun"
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 # pi agent bin — must be AFTER bun so the real pi binary wins over the
 # bun-installed npm wrapper (@earendil-works/pi-coding-agent).
@@ -122,3 +122,7 @@ export PATH="$HOME/.pi/agent/bin:$PATH"
 # PROFILING (Disabled by default - uncomment to profile startup time)
 # ============================================================================
 # zprof
+
+
+export PATH="$HOME/.local/bin:$PATH"
+

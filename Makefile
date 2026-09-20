@@ -1,4 +1,4 @@
-.PHONY: install clean update
+.PHONY: install clean update setup setup-ubuntu
 
 install:
 	stow -S git zsh bin starship
@@ -8,3 +8,9 @@ clean:
 
 update:
 	git pull --rebase
+
+setup: setup-ubuntu
+
+setup-ubuntu:
+	./scripts/setup-ubuntu.sh
+
