@@ -191,5 +191,6 @@ echo
 if [ "$RELOGIN" -eq 1 ]; then
     log_warn "Added $TARGET_USER to the 'keyd' group."
 fi
-log_warn "LOG OUT and back in — the keyd group and the GNOME extension only take effect in a fresh session."
+log_warn "Log out and back in — the keyd group and the GNOME extension only take effect on the next login."
+log_warn "If the mapper still logs a socket permission error afterwards, REBOOT: with KillUserProcesses=no the systemd user manager can keep the old group list across a logout."
 log_info "Revert with: $0 --revert"

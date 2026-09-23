@@ -151,9 +151,18 @@ terminal-level shortcuts** while every other app gets the full Cmd behaviour:
 Window classes are normalised by the mapper (`com.mitchellh.ghostty` →
 `com-mitchellh-ghostty`); discover others with `tail -f ~/.config/keyd/app.log`.
 
-**A re-login is required** after `make keyd`: the `keyd` group membership and
-the keyd GNOME extension (auto-patched for your GNOME version) only take effect
-in a fresh session.
+**A fresh session is required** after `make keyd`: the `keyd` group membership
+and the keyd GNOME extension (auto-patched for your GNOME version) only take
+effect on the next login.
+
+If the mapper still logs `Failed to connect to "/var/run/keyd.socket"` after
+logging back in, **reboot**. With `KillUserProcesses=no` (the default), a logout
+does not restart `user@1000.service` while other user processes exist, so the
+new session inherits the old group list. To test without rebooting:
+
+```sh
+sudo setfacl -m u:$USER:rw /var/run/keyd.socket   # temporary; lost on keyd restart
+```
 
 keyd remaps at the evdev layer, so it works on Wayland. This is why it's used
 instead of [Kinto](https://github.com/rbreaves/kinto), whose Linux backend
