@@ -80,3 +80,12 @@ bindkey '^[^N' newtab              # alt+N: open new tab
 bindkey '^?' backward-delete-char  # backspace: delete char before cursor
 # Ctrl-R: search history (enhanced by history-search-multi-word plugin)
 bindkey '^R' history-incremental-search-backward
+
+# macOS-style (Cmd/Super) fallbacks. Ghostty translates Cmd+Left/Right/Backspace
+# into readline control chars (see ghostty/config), so these only matter for
+# terminals that forward raw Super-modified escape sequences (xterm modifier 9).
+bindkey '^[[1;9D' beginning-of-line      # cmd+left
+bindkey '^[[1;9C' end-of-line            # cmd+right
+bindkey '^[[1;9A' beginning-of-buffer-or-history  # cmd+up
+bindkey '^[[1;9B' end-of-buffer-or-history        # cmd+down
+bindkey '^[[3;9~' delete-char            # cmd+delete

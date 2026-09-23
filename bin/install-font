@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# install-font — Install OTF/TTF fonts from a local archive or remote URL
+# ==============================================================================
+# Usage:
+#   install-font <path-or-url> [font-name]
+#
+# Examples:
+#   install-font ./CommitMonoV143.zip CommitMono
+#   install-font https://github.com/eigilnikolajsen/commit-mono/releases/download/v1.143/CommitMonoV143.zip CommitMono
+# ==============================================================================
+
+set -euo pipefail
+
+BOLD="\033[1m"
+GREEN="\033[0;32m"
+YELLOW="\033[0;33m"
+BLUE="\033[0;34m"
+RED="\033[0;31m"
+RESET="\033[0m"
+
+log_info()  { printf "${BLUE}==>${RESET} ${BOLD}%s${RESET}\n" "$1"; }
+log_ok()    { printf "${GREEN}==>${RESET} ${BOLD}%s${RESET}\n" "$1"; }
+log_warn()  { printf "${YELLOW}WARNING:${RESET} %s\n" "$1"; }
+log_error() { printf "${RED}ERROR:${RESET} %s\n" "$1" >&2; }
+
+FONT_DIR="${HOME}/.local/share/fonts"
+SOURCE="${1:-}"
+NAME="${2:-}"
+
+if [ -z "$SOURCE" ]; then
+    log_error "No font archive provided."
+    echo "Usage: install-font <path-or-url> [font-name]"
+    exit 1
+fi
+
+# Derive font name from archive basename if not provided
+if [ -z "$NAME" ]; then
+    NAME="$(basename "$SOURCE" | sed -E 's/\.(zip|tar\.gz|tgz|tar\.bz2|tar\.xz)$//g')"
+fi
+
+TARGET="${FONT_DIR}/${NAME}"
+TMPDIR="$(mktemp -d)"
+trap 'rm -rf "$TMPDIR"' EXIT
+
+log_info "Installing font: ${NAME}"
+
+# Download or copy the archive
+if [[ "$SOURCE" == http* ]]; then
+    log_info "Downloading ${SOURCE} ..."
+    if ! curl -fsSL -o "${TMPDIR}/archive" "$SOURCE"; then
+        log_error "Failed to download ${SOURCE}"
+        exit 1
+    fi
+else
+    if [ ! -f "$SOURCE" ]; then
+        log_error "File not found: ${SOURCE}"
+        exit 1
+    fi
+    cp "$SOURCE" "${TMPDIR}/archive"
+fi
+
+# Create target directory
+mkdir -p "$TARGET"
+
+# Extract based on archive type
+ARCHIVE="${TMPDIR}/archive"
+if file "$ARCHIVE" | grep -qi zip; then
+    unzip -oq "$ARCHIVE" -d "$TARGET"
+elif file "$ARCHIVE" | grep -qi 'tar archive'; then
+    tar -xf "$ARCHIVE" -C "$TARGET"
+else
+    log_warn "Unknown archive type; attempting unzip ..."
+    unzip -oq "$ARCHIVE" -d "$TARGET" || {
+        log_error "Extraction failed."
+        exit 1
+    }
+fi
+
+# Remove non-font files to keep the directory clean
+find "$TARGET" -maxdepth 1 -type f ! \( -iname '*.otf' -o -iname '*.ttf' \) -delete 2>/dev/null || true
+
+# Refresh font cache
+log_info "Rebuilding font cache ..."
+fc-cache -f "$TARGET"
+
+INSTALLED_COUNT="$(find "$TARGET" -maxdepth 1 \( -iname '*.otf' -o -iname '*.ttf' \) | wc -l)"
+log_ok "${NAME} installed (${INSTALLED_COUNT} fonts) → ${TARGET}"

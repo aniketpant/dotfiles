@@ -1,0 +1,155 @@
+# ==============================================================================
+# Ghostty Configuration — Ubuntu / GTK
+# ==============================================================================
+# Reference: https://ghostty.org/docs/config/reference
+# Managed via dotfiles + GNU Stow
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# Font
+# ------------------------------------------------------------------------------
+# CommitMono — a monospace font built for coding with great legibility.
+font-family = JetBrainsMono Nerd Font
+font-size = 10
+
+# Disable programming ligatures (keep operator glyphs distinct in terminals)
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig
+
+# ------------------------------------------------------------------------------
+# Theme & Colors
+# ------------------------------------------------------------------------------
+theme = dark:Gruvbox Dark Hard,light:Gruvbox Light
+# Follow the OS / desktop dark-mode preference automatically
+window-theme = auto
+
+# Slightly dim unfocused splits so the active one stands out
+unfocused-split-opacity = 0.85
+
+# ------------------------------------------------------------------------------
+# Window & Chrome
+# ------------------------------------------------------------------------------
+# Use the native GTK window decorations (title bar, close/minimize buttons)
+gtk-titlebar = true
+
+# Ghostty's libadwaita integration gives proper GNOME header bars
+window-padding-x = 4
+window-padding-y = 4
+window-padding-balance = true
+
+# Confirm before closing a window that still has a running process
+confirm-close-surface = true
+
+# Keep a single Ghostty process (faster tab/window creation, shared state)
+gtk-single-instance = true
+
+# Allow tabs in the GTK header bar
+gtk-tabs-location = top
+
+# Clipboard integration — allow reads so shell copy helpers work
+clipboard-read = allow
+clipboard-write = allow
+clipboard-paste-protection = true
+
+# ------------------------------------------------------------------------------
+# Scrollback
+# ------------------------------------------------------------------------------
+# ~50 MB scrollback (default is 10 MB = 10485760)
+scrollback-limit = 52428800
+
+# ------------------------------------------------------------------------------
+# Cursor
+# ------------------------------------------------------------------------------
+cursor-style = block
+cursor-style-blink = false
+
+# Smooth mouse scrolling
+mouse-scroll-multiplier = 1.5
+
+# ------------------------------------------------------------------------------
+# Shell & Integration
+# ------------------------------------------------------------------------------
+# Let Ghostty auto-detect the shell and inject integration (prompt marks,
+# semantic zones, OSC 133 command tracking, etc.)
+command = zsh
+shell-integration = zsh
+shell-integration-features = cursor,sudo,title
+
+# Notify via desktop notification when a long-running command finishes
+# and the terminal is not focused (requires shell integration)
+notify-on-command-finish = unfocused
+
+# Links — clickable URLs in output (ctrl+click opens in browser)
+link-url = true
+
+# Don't allow programs to change the window title via escape sequences
+# (starship already sets a nice title via shell-integration)
+# NOTE: Ghostty doesn't have a window-title-change option; use a fixed title if needed.
+# window-title = Ghostty
+
+# Close the window when the last tab/split exits
+quit-after-last-window-closed = true
+quit-after-last-window-closed-delay = 10s
+
+# Auto-update notifications (Ghostty checks GitHub releases)
+auto-update = check
+
+# ------------------------------------------------------------------------------
+# Keybindings — sensible Linux/GTK defaults
+# (Ghostty already provides great defaults; override only what's ergonomic)
+# ------------------------------------------------------------------------------
+# Quick font-size adjustment
+keybind = ctrl+equal=increase_font_size:1
+keybind = ctrl+minus=decrease_font_size:1
+keybind = ctrl+zero=reset_font_size
+
+# Splits
+keybind = ctrl+shift+backslash=new_split:right
+keybind = ctrl+shift+minus=new_split:down
+keybind = ctrl+shift+h=goto_split:left
+keybind = ctrl+shift+j=goto_split:bottom
+keybind = ctrl+shift+k=goto_split:top
+keybind = ctrl+shift+l=goto_split:right
+
+# Tabs
+keybind = ctrl+shift+t=new_tab
+keybind = ctrl+shift+w=close_surface
+
+# Toggle zoom on current split
+keybind = ctrl+shift+z=toggle_split_zoom
+
+# Clear screen (used by the keyd Ghostty profile: Cmd+K -> super+k)
+keybind = super+k=clear_screen
+
+# Quick reload config
+keybind = ctrl+shift+comma=reload_config
+
+# ------------------------------------------------------------------------------
+# macOS-style (Cmd/Super) bindings
+# ------------------------------------------------------------------------------
+# Super == the Cmd key on Apple keyboards / the Win key elsewhere.
+# NOTE: GNOME binds <Super>v to the message tray; scripts/setup-macos-keys.sh
+# frees it so Cmd+V can reach Ghostty. Run `make macos-keys` once.
+
+# Clipboard
+keybind = super+c=copy_to_clipboard
+keybind = super+v=paste_from_clipboard
+
+# Tabs & windows
+keybind = super+t=new_tab
+keybind = super+w=close_surface
+keybind = super+q=quit
+keybind = super+shift+bracket_left=previous_tab
+keybind = super+shift+bracket_right=next_tab
+
+# Font zoom
+keybind = super+equal=increase_font_size:1
+keybind = super+minus=decrease_font_size:1
+keybind = super+zero=reset_font_size
+
+# Line editing (emitted as readline control chars for the shell)
+keybind = super+left=text:\x01       # Cmd+Left  -> beginning of line (Ctrl-A)
+keybind = super+right=text:\x05      # Cmd+Right -> end of line (Ctrl-E)
+keybind = super+backspace=text:\x15  # Cmd+Delete-> kill to start of line (Ctrl-U)
+keybind = super+delete=text:\x0b     # Cmd+Del   -> kill to end of line (Ctrl-K)
