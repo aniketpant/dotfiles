@@ -118,6 +118,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun-installed npm wrapper (@earendil-works/pi-coding-agent).
 export PATH="$HOME/.pi/agent/bin:$PATH"
 
+# opencode — installed at ~/.opencode/bin by the official installer
+export PATH="$HOME/.opencode/bin:$PATH"
+
 # ============================================================================
 # PROFILING (Disabled by default - uncomment to profile startup time)
 # ============================================================================
@@ -126,3 +129,10 @@ export PATH="$HOME/.pi/agent/bin:$PATH"
 
 export PATH="$HOME/.local/bin:$PATH"
 
+# ============================================================================
+# PROMPT SAFETY NET
+# ============================================================================
+# Re-assert prompt substitution after everything else has run. If any lazy
+# tool or plugin turns it off, the raw "$(starship prompt ...)" string would
+# be shown instead of the evaluated prompt.
+setopt PROMPT_SUBST
