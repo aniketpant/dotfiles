@@ -33,5 +33,7 @@ fi
 
 BRANCH=$(ruby -e "puts \`git branch\`.match(/\n?\*\ ([a-zA-Z0-9\-_.]+)/)[1]")
 
-[[ VERBOSE -eq 1 ]] && echo "hub pull-request -h ${OWNER}:${BRANCH}"
-hub pull-request -h ${OWNER}:${BRANCH}
+# `(( VERBOSE ))`, not `[[ VERBOSE -eq 1 ]]`: inside `[[ ]]` a bare word is a
+# string, so `VERBOSE -eq 1` compared the literal strings and never matched.
+(( VERBOSE )) && echo "hub pull-request -h ${OWNER}:${BRANCH}"
+hub pull-request -h "${OWNER}:${BRANCH}"

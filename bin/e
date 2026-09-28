@@ -1,9 +1,6 @@
 #!/bin/sh
 #
-# Quick shortcut to an editor.
-#
-# This means that as I travel back and forth between editors, hey, I don't have
-# to re-learn any arcane commands. Neat.
+# Open a path in $EDITOR, defaulting to the current directory.
 #
 # USAGE:
 #
@@ -14,8 +11,10 @@
 #   $ e /usr/local
 #   # => opens the specified directory in your editor
 
-if test "$1" == ""
-then
+# `-z`, not `test "$1" == ""`: /bin/sh is dash on Ubuntu, which rejects `==`
+# in `test` and exits 2, which would fall through to the else branch and open
+# the editor on an empty path.
+if [ -z "$1" ]; then
   exec $EDITOR .
 else
   exec $EDITOR "$1"

@@ -135,10 +135,11 @@ alias json='python3 -m json.tool'          # pretty-print JSON from stdin
 alias urldecode='python3 -c "import sys, urllib.parse; print(urllib.parse.unquote(sys.stdin.read().strip()))"'
 
 # ----------------------------------------------------------------------------
-# Zoxide (smart cd replacement — use z/zi instead of cd)
+# Zoxide (smart cd replacement — `z` and `zi` are the zoxide commands)
 # ----------------------------------------------------------------------------
-alias z='z'
-alias zi='zi'
+# No aliases needed: zinit autoloads zoxide, which defines z/zi as real
+# functions. An `alias z='z'` here would be a no-op, because zsh does not
+# recursively expand the right-hand side of an alias.
 
 # ----------------------------------------------------------------------------
 # Clipboard

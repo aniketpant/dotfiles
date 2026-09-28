@@ -1,4 +1,7 @@
 gf() {
-  local branch=$1
-  git checkout -b $branch origin/$branch
+  if (( $# != 1 )); then
+    print -u2 -- "usage: gf <remote-branch>"
+    return 1
+  fi
+  git checkout -b "$1" "origin/$1"
 }

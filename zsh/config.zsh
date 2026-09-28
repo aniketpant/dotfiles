@@ -5,8 +5,15 @@
 # ----------------------------------------------------------------------------
 # Colors
 # ----------------------------------------------------------------------------
+# LSCOLORS is the BSD/macOS form (colon-separated descriptors, no `=`).
 export LSCOLORS="exfxcxdxbxegedabagacad"
 export CLICOLOR=true
+# LS_COLORS is the GNU form and is what the zsh completion `list-colors` zstyle
+# below, eza, and coreutils `ls` read. It is not exported by anything on Ubuntu
+# outside bash, so without this the zstyle expands to an empty value and file
+# completions lose their colors. This is `dircolors -b`'s default; override it
+# in ~/.localrc, which .zshrc sources after this file.
+export LS_COLORS="${LS_COLORS:-di=34:ln=35:so=32:pi=33:ex=31:bd=34:cd=34:su=37:sg=37:tw=32:ow=32}"
 
 # ----------------------------------------------------------------------------
 # Functions path
@@ -15,6 +22,14 @@ fpath=($DOTFILES/zsh/functions $fpath)
 
 # Eager-load utility functions (non-completion) so they're available immediately
 autoload -U c h gf last_modified newtab savepath smartextract verbose_completion
+
+# ----------------------------------------------------------------------------
+# Project root
+# ----------------------------------------------------------------------------
+# `c` (zsh/functions/c) and its completion (_c) both resolve against $PROJECTS,
+# and nothing defined it, so `c foo` ran `cd /foo` and completion listed `/`.
+# Override in ~/.localrc, which .zshrc sources after this file.
+export PROJECTS="${PROJECTS:-$HOME/Playground}"
 
 # ----------------------------------------------------------------------------
 # History configuration
@@ -44,7 +59,9 @@ setopt LOCAL_TRAPS          # allow functions to have local traps
 setopt PROMPT_SUBST         # allow variable substitution in prompts
 setopt CORRECT              # suggest corrections for mistyped commands
 setopt COMPLETE_IN_WORD     # complete from cursor position, not end of word
-setopt IGNORE_EOF           # don't exit shell on Ctrl-D
+# IGNORE_EOF is deliberately not set: .zshrc unsets it after sourcing this
+# file, so Ctrl-D on an empty line exits. Setting it here only described
+# behavior that never took effect.
 setopt AUTO_CD              # type a directory name to cd into it
 setopt AUTO_PUSHD           # cd pushes old dir onto stack (use `dirs -v` to see)
 setopt PUSHD_IGNORE_DUPS    # don't push duplicate directories on the stack

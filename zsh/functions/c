@@ -1,1 +1,6 @@
-cd $PROJECTS/$1;
+# cd into a project directory. $PROJECTS is set in zsh/config.zsh.
+if (( $# != 1 )); then
+  print -u2 -- "usage: c <project-dir>"
+  return 1
+fi
+cd "$PROJECTS/$1"

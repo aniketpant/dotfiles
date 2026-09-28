@@ -25,20 +25,22 @@ BLUE="\033[0;34m"
 RED="\033[0;31m"
 RESET="\033[0m"
 
+# Color escapes go through %b and the message through %s, so a literal `%` in a
+# message (a path, a version string) is not read as a conversion specifier.
 log_info() {
-    printf "${BLUE}==>${RESET} ${BOLD}%s${RESET}\n" "$1"
+    printf '%b==>%b %b%s%b\n' "$BLUE" "$RESET" "$BOLD" "$1" "$RESET"
 }
 
 log_success() {
-    printf "${GREEN}==>${RESET} ${BOLD}%s${RESET}\n" "$1"
+    printf '%b==>%b %b%s%b\n' "$GREEN" "$RESET" "$BOLD" "$1" "$RESET"
 }
 
 log_warn() {
-    printf "${YELLOW}WARNING:${RESET} %s\n" "$1"
+    printf '%bWARNING:%b %s\n' "$YELLOW" "$RESET" "$1"
 }
 
 log_error() {
-    printf "${RED}ERROR:${RESET} %s\n" "$1" >&2
+    printf '%bERROR:%b %s\n' "$RED" "$RESET" "$1" >&2
 }
 
 # 1. Verify OS is Debian/Ubuntu

@@ -2,5 +2,10 @@
 
 latest=$(git log --format="%H" -1)
 
-[[ -n "$(which pbcopy)" ]] && echo $latest | pbcopy
-echo $latest
+# `command -v`, not `which`: it is a shell builtin, so this does not fork a
+# subprocess just to test for pbcopy. The `if` is not required for the exit
+# status — the `echo "$latest"` below was the last command either way.
+if command -v pbcopy >/dev/null 2>&1; then
+  echo "$latest" | pbcopy
+fi
+echo "$latest"
