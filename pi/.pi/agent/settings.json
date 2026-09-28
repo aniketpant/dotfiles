@@ -1,0 +1,28 @@
+{
+  "lastChangelogVersion": "0.86.1",
+  "theme": "light/dark",
+  "defaultProvider": "opencode-go",
+  "defaultModel": "deepseek-v4.1-flash",
+  "hideThinkingBlock": false,
+  "packages": [
+    "../../Playground/botfiles"
+  ],
+  "enabledModels": [
+    "deepseek-v4.1-flash",
+    "muse-spark-1.3-contributor",
+    "deepseek-v4-flash",
+    "mimo-v2.5",
+    "muse-spark-1.2-contributor",
+    "glm-5.3-flash",
+    "mimo-v2.6-flash",
+    "deepseek-v4-flash-vision-exp",
+    "deepseek-v4-pro"
+  ],
+  "steeringMode": "all",
+  "followUpMode": "all",
+  "showCacheMissNotices": true,
+  "collapseChangelog": true,
+  "quietStartup": true,
+  "enableInstallTelemetry": true,
+  "tuiMode": "fullscreen"
+}

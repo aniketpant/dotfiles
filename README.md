@@ -10,7 +10,16 @@ Personal Zsh dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/
 ├── ghostty/
 │   └── .config/
 │       └── ghostty/
-│           └── config     # terminal config (font, theme, keybindings)
+│           ├── config     # terminal config (font, theme, keybindings)
+│           └── themes/    # pi-matched light/dark palettes
+├── opencode/
+│   └── .config/
+│       └── opencode/
+│           └── cli.json   # TUI settings (theme, session, animations)
+├── pi/
+│   └── .pi/
+│       └── agent/
+│           └── settings.json  # pi TUI settings (theme, model, behaviour)
 ├── git/
 │   ├── .gitconfig    # global git config (personal email)
 │   ├── .gitignore    # global gitignore
@@ -58,8 +67,26 @@ This installs:
 make install
 ```
 
-`make install` stows `git`, `zsh`, `bin`, `starship`, and `ghostty` into `$HOME`.
+`make install` stows `git`, `zsh`, `bin`, `starship`, `ghostty`, `opencode`, and
+`pi` into `$HOME`.
 
+## Theme Sync
+
+Ghostty, pi, and opencode share one palette so moving between the shell and a
+TUI is not jarring.
+
+| App | Setting | Follows |
+|-----|---------|---------|
+| Ghostty | `theme = dark:pi-dark,light:pi-light` + `window-theme = auto` | GNOME light/dark |
+| pi | `"theme": "light/dark"` | terminal appearance |
+| opencode | `"name": "system"`, `"mode": "system"` | terminal appearance |
+
+`ghostty/.config/ghostty/themes/pi-dark` and `pi-light` are generated from pi's
+own bundled `dark.json` / `light.json` colors, so the shell prompt and pi's TUI
+render from identical hex values. Switching GNOME light/dark moves all three.
+
+To change the palette, edit the two theme files and reload Ghostty with
+`Ctrl+Shift+Comma`.
 
 ## Plugin Manager
 
