@@ -1,10 +1,16 @@
 .PHONY: install clean update setup setup-ubuntu macos-keys keyd fonts
 
+PACKAGES = git zsh starship ghostty opencode pi
+BIN_DIR = $(HOME)/bin
+
 install:
-	stow -S git zsh bin starship ghostty opencode pi
+	mkdir -p $(BIN_DIR)
+	stow -S $(PACKAGES)
+	stow -S bin --target=$(BIN_DIR)
 
 clean:
-	stow -D git zsh bin starship ghostty opencode pi
+	stow -D $(PACKAGES)
+	stow -D bin --target=$(BIN_DIR)
 
 update:
 	git pull --rebase
