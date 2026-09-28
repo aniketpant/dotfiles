@@ -1,0 +1,32 @@
+# pi-dark — Ghostty theme matched to pi's built-in dark theme.
+# Source: pi's bundled dark.json (colors.black..white vars).
+# Keeps the shell/prompt palette identical to the pi TUI.
+
+background = #18181e
+foreground = #d4d4d4
+cursor-color = #d4d4d4
+cursor-text = #18181e
+
+# base 16 ANSI colors
+palette = 0=#282832
+palette = 1=#cc6666
+palette = 2=#b5bd68
+palette = 3=#ffff00
+palette = 4=#5f87ff
+palette = 5=#9575cd
+palette = 6=#00d7ff
+palette = 7=#d4d4d4
+palette = 8=#505050
+palette = 9=#db9494
+palette = 10=#cbd195
+palette = 11=#ffff4d
+palette = 12=#8fabff
+palette = 13=#b59edc
+palette = 14=#4de3ff
+palette = 15=#ffffff
+
+# Derive 256-color cube/ramp from the base 16 for cohesive truecolor-less output
+palette-generate = true
+
+selection-foreground = #d4d4d4
+selection-background = #505050

@@ -1,0 +1,32 @@
+# pi-light — Ghostty theme matched to pi's built-in light theme.
+# Source: pi's bundled light.json (colors.black..white vars).
+# Keeps the shell/prompt palette identical to the pi TUI.
+
+background = #ffffff
+foreground = #1f2328
+cursor-color = #1f2328
+cursor-text = #ffffff
+
+# base 16 ANSI colors
+palette = 0=#e8e8e8
+palette = 1=#aa5555
+palette = 2=#588458
+palette = 3=#9a7326
+palette = 4=#547da7
+palette = 5=#7e57c2
+palette = 6=#5a8080
+palette = 7=#1f2328
+palette = 8=#b0b0b0
+palette = 9=#854242
+palette = 10=#456745
+palette = 11=#785a1e
+palette = 12=#426282
+palette = 13=#624497
+palette = 14=#466464
+palette = 15=#000000
+
+# Derive 256-color cube/ramp from the base 16 for cohesive truecolor-less output
+palette-generate = true
+
+selection-foreground = #1f2328
+selection-background = #b0b0b0

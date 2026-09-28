@@ -20,7 +20,9 @@ font-feature = -dlig
 # ------------------------------------------------------------------------------
 # Theme & Colors
 # ------------------------------------------------------------------------------
-theme = dark:Gruvbox Dark Hard,light:Gruvbox Light
+# pi-matched palettes (see themes/pi-dark and themes/pi-light) so the shell,
+# prompt, and TUI output use the same colors pi draws its UI with.
+theme = dark:pi-dark,light:pi-light
 # Follow the OS / desktop dark-mode preference automatically
 window-theme = auto
 
