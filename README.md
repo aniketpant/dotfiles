@@ -7,6 +7,7 @@ Personal Zsh dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/
 ```
 .dotfiles/
 ├── bin/              # git helper scripts (stowed to ~/bin)
+├── fonts/            # CommitMono zip for `make fonts`
 ├── ghostty/
 │   └── .config/
 │       └── ghostty/
@@ -39,7 +40,7 @@ Personal Zsh dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/
 │   ├── aliases.zsh   # shell aliases (auto-sourced)
 │   ├── config.zsh    # zsh options, history, key bindings
 │   ├── prompt.zsh    # prompt config (Starship handles this)
-│   ├── window.zsh    # terminal window title helper
+│   ├── window.zsh    # terminal window title helper (defined, not hooked up)
 │   └── functions/    # autoloaded zsh functions
 └── Makefile          # install / clean / update / setup / macos-keys / keyd targets
 ```
@@ -51,7 +52,7 @@ Personal Zsh dotfiles managed with [GNU Stow](https://www.gnu.org/software/stow/
 On Ubuntu, install system packages, repositories, and modern CLI tools:
 
 ```sh
-git clone https://github.com/aniketp/dotfiles ~/.dotfiles
+git clone https://github.com/aniketpant/dotfiles ~/.dotfiles
 cd ~/.dotfiles
 make setup-ubuntu
 ```
@@ -117,7 +118,7 @@ deferred plugin loading. Shell startup is ~0.6s.
 
 ## macOS-style Keybindings
 
-The dotfiles reproduce the macOS "Cmd" workflow across four layers:
+The dotfiles reproduce the macOS "Cmd" workflow across six layers:
 
 ```sh
 make macos-keys   # GNOME: GTK Emacs key theme + free <Super>v
@@ -161,19 +162,30 @@ per-app profile below.
 focused it layers a mask over the global rules, so **Ghostty keeps its
 terminal-level shortcuts** while every other app gets the full Cmd behaviour:
 
-| Chord | Sends | Action |
-|-------|-------|--------|
-| Cmd+T | `Ctrl+Shift+T` | new tab |
-| Cmd+W | `Ctrl+Shift+W` | close tab |
-| Cmd+Q | `Ctrl+Shift+Q` | quit |
-| Cmd+N | `Ctrl+Shift+N` | new window |
-| Cmd+F | `Ctrl+Shift+F` | search |
-| Cmd+A | `Ctrl+Shift+A` | select all |
-| Cmd+D | `Ctrl+Shift+O` | split right |
-| Cmd+K | `Super+K` | clear screen |
-| Cmd+Shift+[ / ] | `Super+Shift+[ / ]` | prev / next tab |
-| Cmd+S | — (`noop`) | avoids `Ctrl+S` (XOFF) |
-| Cmd+Z | — (`noop`) | avoids `Ctrl+Z` (suspend) |
+In keyd's notation `M-` is Meta/Super and `A-` is Alt, so `M-k` below arrives at
+Ghostty as `Super+K`.
+
+| Chord | Sends | Action | Wired in Ghostty? |
+|-------|-------|--------|-------------------|
+| Cmd+T | `Ctrl+Shift+T` | new tab | yes |
+| Cmd+W | `Ctrl+Shift+W` | close tab | yes |
+| Cmd+K | `Super+K` | clear screen | yes |
+| Cmd+[ / ] | `Super+[ / ]` | prev / next tab | no — Ghostty binds `Super+Shift+[`, so the chords differ by a Shift |
+| Cmd+Q | `Ctrl+Shift+Q` | quit | no — unbound |
+| Cmd+N | `Ctrl+Shift+N` | new window | no — unbound |
+| Cmd+F | `Ctrl+Shift+F` | search | no — unbound, and Ghostty has no search action |
+| Cmd+A | `Ctrl+Shift+A` | select all | no — unbound, and Ghostty has no select-all action |
+| Cmd+D | `Ctrl+Shift+O` | split right | no — Ghostty splits on `Ctrl+Shift+\` and `Ctrl+Shift+H/J/K/L` |
+| Cmd+S | — (`noop`) | avoids `Ctrl+S` (XOFF) | n/a |
+| Cmd+Z | — (`noop`) | avoids `Ctrl+Z` (suspend) | n/a |
+
+Six of these rows do not work as written: five are unbound, and the bracket pair
+disagrees by a Shift. `Cmd+F` and `Cmd+A` cannot be fixed by adding a keybind at
+all, because Ghostty has no search or select-all action — they need to send
+something else. The `Super+` bindings already in that file are unreachable while
+keyd is running, because keyd overloads the physical Super key into the `cmd`
+layer and never emits a bare Super — except where `app.conf` maps back to `M-`,
+as `cmd.k` does.
 
 Window classes are normalised by the mapper (`com.mitchellh.ghostty` →
 `com-mitchellh-ghostty`); discover others with `tail -f ~/.config/keyd/app.log`.

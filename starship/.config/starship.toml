@@ -38,6 +38,11 @@ format = "[$branch]($style)"
 style = "bright-black"
 
 [git_status]
+# The six status symbols below are U+200B ZERO WIDTH SPACE, not empty strings.
+# They render nothing but hold a slot in the format string, so the badges stay
+# aligned whether or not a state is set. An editor or formatter that "cleans up"
+# empty strings turns them into "" and the alignment collapses. Verify with:
+# grep -n $'\u200b' ~/.config/starship.toml
 format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
 style = "cyan"
 conflicted = "​"
@@ -73,6 +78,9 @@ style = "red"
 [python]
 format = "[$virtualenv]($style) "
 style = "bright-black"
+# Empty detect_* lists disable version detection for this language, so the
+# module renders as the bare `$virtualenv` name with no version. Deliberate:
+# set them to a list (e.g. ["pyproject.toml", "requirements.txt"]) to re-enable.
 detect_extensions = []
 detect_files = []
 

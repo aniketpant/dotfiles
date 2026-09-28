@@ -8,7 +8,6 @@
 # ------------------------------------------------------------------------------
 # Font
 # ------------------------------------------------------------------------------
-# CommitMono — a monospace font built for coding with great legibility.
 font-family = JetBrainsMono Nerd Font
 font-size = 10
 
@@ -85,10 +84,9 @@ notify-on-command-finish = unfocused
 # Links — clickable URLs in output (ctrl+click opens in browser)
 link-url = true
 
-# Don't allow programs to change the window title via escape sequences
-# (starship already sets a nice title via shell-integration)
-# NOTE: Ghostty doesn't have a window-title-change option; use a fixed title if needed.
-# window-title = Ghostty
+# Window title: left to shell-integration above (starship sets it), so
+# `title` is in shell-integration-features. Ghostty has no option to block
+# OSC 0/2 title changes, so there is nothing to configure here.
 
 # Close the window when the last tab/split exits
 quit-after-last-window-closed = true
@@ -98,8 +96,8 @@ quit-after-last-window-closed-delay = 10s
 auto-update = check
 
 # ------------------------------------------------------------------------------
-# Keybindings — sensible Linux/GTK defaults
-# (Ghostty already provides great defaults; override only what's ergonomic)
+# Keybindings
+# Only the bindings below override Ghostty's own defaults.
 # ------------------------------------------------------------------------------
 # Quick font-size adjustment
 keybind = ctrl+equal=increase_font_size:1

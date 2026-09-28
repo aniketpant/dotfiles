@@ -1,5 +1,5 @@
 # Never track credentials, cached model data, or session transcripts.
-# Only settings.json belongs in this repo.
+# Only cli.json belongs in this repo.
 auth.json
 models-store.json
 sessions/
